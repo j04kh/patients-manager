@@ -13,9 +13,9 @@ export default function Patients() {
   const { currentPage, totalPages, paginatedData, nextPage, prevPage } = usePagination(data ?? []);
 
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden pb-5">
+    <div className="flex h-full w-full flex-col overflow-hidden sm:pb-5">
       <h1 className="mb-2 text-3xl font-bold lg:text-4xl">Patients</h1>
-      <h2 className="mb-16 text-sm text-gray-500 lg:text-base">
+      <h2 className="mb-8 text-sm text-gray-500 sm:mb-10 lg:text-base">
         General overview of patients registered in the system.
       </h2>
       {isPending ? <Loading /> : null}

@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowTopRightOnSquareIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import {
+  ArrowsPointingInIcon,
+  ArrowsPointingOutIcon,
+  ArrowTopRightOnSquareIcon,
+  EllipsisVerticalIcon,
+} from "@heroicons/react/24/outline";
 import { capitalizeName, formatPatientDescription, isValidUrl } from "../../utils/patients";
 import Avatar from "./Avatar";
 
@@ -57,11 +62,11 @@ export default function PatientCard({ name, avatar, website, description }: Prop
         </p>
       </div>
       <div className="flex h-6 w-full justify-end">
-        {hasOverflow ? (
+        {hasOverflow && (
           <button className="cursor-pointer" onClick={() => setExpanded((value) => !value)} type="button">
-            <span className="text-xs">{expanded ? "Show less" : "Show more"}</span>
+            {expanded ? <ArrowsPointingInIcon className="size-4.5" /> : <ArrowsPointingOutIcon className="size-4.5" />}
           </button>
-        ) : null}
+        )}
       </div>
     </article>
   );

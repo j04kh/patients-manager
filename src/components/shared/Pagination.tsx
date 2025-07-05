@@ -13,7 +13,7 @@ export default function Pagination({ data, currentPage, totalPages, nextPage, pr
   const end = Math.min(currentPage * 20, data.length);
 
   return (
-    <nav className="mt-auto flex items-center justify-between border-t border-gray-200 px-4 py-3 sm:px-6">
+    <nav className="mt-auto mr-2 flex items-center justify-between border-t border-gray-200 py-3 sm:mr-3 sm:px-3">
       <div className="hidden sm:block">
         <p className="text-sm text-gray-700">
           Showing <span className="font-medium">{start} </span>

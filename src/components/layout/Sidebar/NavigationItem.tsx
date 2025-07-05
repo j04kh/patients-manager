@@ -1,4 +1,5 @@
-import { CalendarDaysIcon, ChartPieIcon, Cog8ToothIcon, HomeIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { CalendarDaysIcon, ChartPieIcon, Cog8ToothIcon, HomeIcon } from "@heroicons/react/24/outline";
+import { UsersIcon } from "@heroicons/react/24/solid";
 import ROUTES from "../../../constants";
 
 interface Props {
@@ -28,11 +29,11 @@ export default function NavigationItem({ active = false, label, href }: Props) {
 }
 
 function NavigationItemIcon({ route }: { route: RoutePath }) {
-  // If this had real routing, we'd also need to handle active/non-active classNames,
+  // If this had real routing, we'd also need to handle active/non-active states,
   // this assumes Patients is the active route.
   const IconMap: Record<RoutePath, React.ReactElement> = {
     [ROUTES.HOME]: <HomeIcon className="size-5" />,
-    [ROUTES.PATIENTS]: <UsersIcon className="size-5 stroke-2" />,
+    [ROUTES.PATIENTS]: <UsersIcon className="size-5" />,
     [ROUTES.APPOINTMENTS]: <CalendarDaysIcon className="size-5" />,
     [ROUTES.REPORTS]: <ChartPieIcon className="size-5" />,
     [ROUTES.SETTINGS]: <Cog8ToothIcon className="size-5" />,
