@@ -3,12 +3,17 @@ import getPatients from "../../components/patients/actions";
 import PatientsGrid from "./PatientsGrid";
 import DataStateMessage from "../../components/shared/DataStateMessage";
 import Loading from "../../components/shared/Loading";
+import { usePagination } from "../../hooks/usePagination";
+import Pagination from "../../components/shared/Pagination";
 
 export default function Patients() {
   const { isPending, isError, data } = useQuery({ queryKey: ["patients"], queryFn: getPatients });
 
+  // The API endpoint doesn't support pagination, so we use client-side pagination
+  const { currentPage, totalPages, paginatedData, nextPage, prevPage } = usePagination(data ?? []);
+
   return (
-    <div className="flex h-full w-full flex-col overflow-hidden pb-12">
+    <div className="flex h-full w-full flex-col overflow-hidden pb-5">
       <h1 className="mb-2 text-3xl font-bold lg:text-4xl">Patients</h1>
       <h2 className="mb-16 text-sm text-gray-500 lg:text-base">
         General overview of patients registered in the system.
@@ -21,7 +26,14 @@ export default function Patients() {
           type="error"
         />
       ) : null}
-      {data ? <PatientsGrid patients={data} /> : null}
+      {data ? <PatientsGrid patients={paginatedData} /> : null}
+      <Pagination
+        data={data ?? []}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        nextPage={nextPage}
+        prevPage={prevPage}
+      />
     </div>
   );
 }
