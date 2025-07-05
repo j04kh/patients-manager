@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowTopRightOnSquareIcon, EllipsisVerticalIcon } from "@heroicons/react/24/outline";
+import { capitalizeName, formatPatientDescription, isValidUrl } from "../../utils/patients";
+import Avatar from "./Avatar";
 
 interface Props {
   name: string;
@@ -10,6 +12,19 @@ interface Props {
 
 export default function PatientCard({ name, avatar, website, description }: Props) {
   const [expanded, setExpanded] = useState(false);
+  const [hasOverflow, setHasOverflow] = useState(false);
+  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+
+  const patientName = capitalizeName(name) || "No Name";
+
+  useEffect(() => {
+    // Note: We can also subscribe to window resize events to handle
+    // the overflow. Won't add that here to keep it simple.
+    const el = descriptionRef.current;
+    if (el) {
+      setHasOverflow(el.scrollHeight > el.clientHeight);
+    }
+  }, [description]);
 
   return (
     <article
@@ -17,15 +32,19 @@ export default function PatientCard({ name, avatar, website, description }: Prop
       className="flex h-full max-h-fit w-full flex-col gap-y-3 rounded-lg bg-white p-5 pb-3 shadow-sm shadow-slate-200"
     >
       <div className="flex w-full items-center gap-x-2">
-        <img src={avatar} alt="" className="aspect-square size-12 flex-shrink-0 rounded-full" />
+        <Avatar src={avatar} patientName={patientName} />
         <div className="flex w-full flex-col gap-y-0.5">
-          <span className="line-clamp-1 font-medium text-ellipsis">{name}</span>
-          <a target="_blank" href={website} aria-label={`${name}'s website (Opens in a new tab)`}>
-            <span className="flex items-center gap-x-0.5">
-              <ArrowTopRightOnSquareIcon className="size-3.5 stroke-2 pb-px" />
-              <span className="text-xs">Website</span>
-            </span>
-          </a>
+          <span title={patientName} className="line-clamp-1 font-medium text-ellipsis">
+            {patientName}
+          </span>
+          {isValidUrl(website) ? (
+            <a target="_blank" href={website} aria-label={`${patientName}'s website (Opens in a new tab)`}>
+              <span className="flex items-center gap-x-0.5 hover:underline">
+                <ArrowTopRightOnSquareIcon className="size-3.5 stroke-2 pb-px" />
+                <span className="text-xs">Website</span>
+              </span>
+            </a>
+          ) : null}
         </div>
         <button className="cursor-pointer" type="button">
           <span className="sr-only">Open patient options</span>
@@ -33,12 +52,16 @@ export default function PatientCard({ name, avatar, website, description }: Prop
         </button>
       </div>
       <div className="w-full max-w-full overflow-hidden">
-        <p className={`${expanded ? "" : "line-clamp-2 text-ellipsis"} text-sm text-gray-500`}>{description}</p>
+        <p ref={descriptionRef} className={`${expanded ? "" : "line-clamp-1 text-ellipsis"} h- text-sm text-gray-500`}>
+          {formatPatientDescription(description)}
+        </p>
       </div>
-      <div className="flex w-full justify-end">
-        <button className="cursor-pointer" onClick={() => setExpanded((value) => !value)} type="button">
-          <span className="text-xs">{expanded ? "See less" : "See more"}</span>
-        </button>
+      <div className="flex h-6 w-full justify-end">
+        {hasOverflow ? (
+          <button className="cursor-pointer" onClick={() => setExpanded((value) => !value)} type="button">
+            <span className="text-xs">{expanded ? "Show less" : "Show more"}</span>
+          </button>
+        ) : null}
       </div>
     </article>
   );
