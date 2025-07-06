@@ -17,8 +17,8 @@ export default function Patients() {
 
   return (
     <div className="flex h-full w-full flex-col overflow-hidden sm:pb-5">
-      <div className="flex items-center justify-between">
-        <h1 className="mb-2 text-3xl font-bold lg:text-4xl">Patients</h1>
+      <div className="mb-2 flex items-center justify-between">
+        <h1 className="text-3xl font-bold lg:text-4xl">Patients</h1>
         <Button variant="primary" label="New Patient" onClick={() => openModal(<PatientForm />)} />
       </div>
       <h2 className="mb-8 text-sm text-gray-500 sm:mb-10 lg:text-base">

@@ -1,6 +1,7 @@
 import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import { Modal } from "../components/shared/Modal";
+import { AnimatePresence } from "framer-motion";
 
 interface ModalContextType {
   openModal: (component: ReactNode) => void;
@@ -25,7 +26,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ModalContext.Provider value={{ openModal, closeModal }}>
       {children}
-      {modalContent && <Modal onClose={closeModal}>{modalContent}</Modal>}
+      <AnimatePresence>{modalContent && <Modal onClose={closeModal}>{modalContent}</Modal>}</AnimatePresence>
     </ModalContext.Provider>
   );
 };
