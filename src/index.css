@@ -14,11 +14,11 @@ html, body, #root {
 
 /* Classes for reusable components */
 .pm-label {
-  @apply mb-1 text-sm text-gray-700;
+  @apply mb-1 text-base sm:text-sm text-gray-700;
 }
 
 .pm-input {
-  @apply h-fit w-full resize-none rounded-sm border border-gray-300 px-2 py-1.5 text-sm placeholder-gray-300;
+  @apply h-fit w-full resize-none rounded-sm border border-gray-300 px-2 py-1.5 text-base sm:text-sm placeholder-gray-300;
 }
 
 .pm-input-error {
