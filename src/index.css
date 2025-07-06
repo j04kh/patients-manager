@@ -11,3 +11,28 @@ html, body, #root {
   width: 100%;
   font-family: var(--font-inter);
 }
+
+/* Classes for reusable components */
+.pm-label {
+  @apply mb-1 text-sm text-gray-700;
+}
+
+.pm-input {
+  @apply h-fit w-full resize-none rounded-sm border border-gray-300 px-2 py-1.5 text-sm placeholder-gray-300;
+}
+
+.pm-input-error {
+  @apply text-xs mt-0.5 min-h-[1.125rem] text-red-600;
+}
+
+.btn {
+  @apply px-4 py-2 rounded-md min-w-12 flex items-center justify-center gap-x-2 flex-shrink-0 text-sm font-medium cursor-pointer border;
+}
+
+.btn--primary {
+  @apply bg-sky-950 text-white border-sky-950;
+}
+
+.btn--secondary {
+  @apply text-gray-800 border-slate-400;
+}

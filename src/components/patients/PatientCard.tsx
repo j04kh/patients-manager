@@ -1,24 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import {
-  ArrowsPointingInIcon,
-  ArrowsPointingOutIcon,
-  ArrowTopRightOnSquareIcon,
-  EllipsisVerticalIcon,
-} from "@heroicons/react/24/outline";
+import { ArrowsPointingInIcon, ArrowsPointingOutIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { capitalizeName, formatPatientDescription, isValidUrl } from "../../utils/patients";
 import Avatar from "./Avatar";
+import { useModal } from "../../contexts/ModalContext";
+import { PatientForm } from "./form/PatientForm";
 
 interface Props {
+  id: string;
   name: string;
   avatar: string;
   website: string;
   description: string;
 }
 
-export default function PatientCard({ name, avatar, website, description }: Props) {
+export default function PatientCard({ id, name, avatar, website, description }: Props) {
   const [expanded, setExpanded] = useState(false);
   const [hasOverflow, setHasOverflow] = useState(false);
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const { openModal } = useModal();
 
   const patientName = capitalizeName(name) || "No Name";
 
@@ -51,17 +50,20 @@ export default function PatientCard({ name, avatar, website, description }: Prop
             </a>
           ) : null}
         </div>
-        <button className="cursor-pointer" type="button">
-          <span className="sr-only">Open patient options</span>
-          <EllipsisVerticalIcon className="size-5" />
-        </button>
       </div>
       <div className="w-full max-w-full overflow-hidden">
         <p ref={descriptionRef} className={`${expanded ? "" : "line-clamp-1 text-ellipsis"} h- text-sm text-gray-500`}>
           {formatPatientDescription(description)}
         </p>
       </div>
-      <div className="flex h-6 w-full justify-end">
+      <div className="flex h-6 w-full items-center justify-between">
+        <button
+          onClick={() => openModal(<PatientForm values={{ id, name: patientName, avatar, description, website }} />)}
+          className="cursor-pointer self-start text-sky-800"
+          type="button"
+        >
+          <span className="text-sm">Edit</span>
+        </button>
         {hasOverflow && (
           <button className="cursor-pointer" onClick={() => setExpanded((value) => !value)} type="button">
             {expanded ? <ArrowsPointingInIcon className="size-4.5" /> : <ArrowsPointingOutIcon className="size-4.5" />}
