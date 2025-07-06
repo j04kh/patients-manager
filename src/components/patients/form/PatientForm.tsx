@@ -6,6 +6,7 @@ import Button from "../../shared/Button";
 import { INITIAL_VALUES, validateWebsite } from "./utils";
 import usePatients from "../../../hooks/usePatients";
 import { useModal } from "../../../contexts/ModalContext";
+import toast from "react-hot-toast";
 
 type PatientFormValues = Omit<Patient, "createdAt">;
 
@@ -24,8 +25,10 @@ export function PatientForm({ values }: Props) {
 
     if (isEdit) {
       updatePatient(patientData);
+      toast.success("Patient successfully updated!");
     } else {
       createPatient(patientData);
+      toast.success("Patient successfully created!");
     }
     closeModal();
   };
