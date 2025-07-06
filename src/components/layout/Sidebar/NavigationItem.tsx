@@ -14,7 +14,7 @@ type RoutePath = (typeof ROUTES)[keyof typeof ROUTES];
 export default function NavigationItem({ active = false, label, href }: Props) {
   return (
     <li
-      className={`flex w-full rounded-lg py-1 text-gray-800 ${
+      className={`flex w-full rounded-lg py-0.5 text-gray-800 ${
         active
           ? "bg-slate-100 font-semibold hover:bg-slate-200/75"
           : "bg-transparent font-normal text-gray-800 hover:bg-gray-200"

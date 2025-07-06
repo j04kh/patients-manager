@@ -30,7 +30,7 @@ html, body, #root {
 }
 
 .btn--primary {
-  @apply bg-sky-950 text-white border-sky-950;
+  @apply bg-green-950 text-white border-green-950;
 }
 
 .btn--secondary {
