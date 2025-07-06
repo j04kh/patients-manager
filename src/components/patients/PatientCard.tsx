@@ -4,6 +4,8 @@ import { capitalizeName, formatPatientDescription, isValidUrl } from "../../util
 import Avatar from "./Avatar";
 import { useModal } from "../../contexts/ModalContext";
 import { PatientForm } from "./form/PatientForm";
+import { motion } from "framer-motion";
+import ExpandableText from "../shared/ExpandableText";
 
 interface Props {
   id: string;
@@ -31,11 +33,13 @@ export default function PatientCard({ id, name, avatar, website, description }: 
   }, [description]);
 
   return (
-    <article
+    <motion.article
       aria-expanded={expanded}
       className="flex h-full max-h-fit w-full flex-col gap-y-3 rounded-lg bg-white p-5 pb-3 shadow-sm shadow-slate-200"
+      layout
+      transition={{ duration: 0.2, ease: "easeIn" }}
     >
-      <div className="flex w-full items-center gap-x-2">
+      <motion.div layout={false} className="flex w-full items-center gap-x-2">
         <Avatar src={avatar} patientName={patientName} />
         <div className="flex w-full flex-col gap-y-0.5">
           <span title={patientName} className="line-clamp-1 font-medium text-ellipsis">
@@ -50,11 +54,9 @@ export default function PatientCard({ id, name, avatar, website, description }: 
             </a>
           ) : null}
         </div>
-      </div>
+      </motion.div>
       <div className="w-full max-w-full overflow-hidden">
-        <p ref={descriptionRef} className={`${expanded ? "" : "line-clamp-1 text-ellipsis"} h- text-sm text-gray-500`}>
-          {formatPatientDescription(description)}
-        </p>
+        <ExpandableText text={formatPatientDescription(description)} expanded={expanded} ref={descriptionRef} />
       </div>
       <div className="flex h-6 w-full items-center justify-between">
         <button
@@ -70,6 +72,6 @@ export default function PatientCard({ id, name, avatar, website, description }: 
           </button>
         )}
       </div>
-    </article>
+    </motion.article>
   );
 }
