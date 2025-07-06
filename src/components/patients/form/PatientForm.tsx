@@ -27,7 +27,9 @@ export function PatientForm({ values }: Props) {
       updatePatient(patientData);
       toast.success("Patient successfully updated!");
     } else {
-      createPatient(patientData);
+      // Note: Since it's client-side data only, not persisted, ids are
+      // generated with crypto.randomUUID()
+      createPatient({ ...patientData, id: crypto.randomUUID() });
       toast.success("Patient successfully created!");
     }
     closeModal();

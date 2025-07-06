@@ -13,6 +13,8 @@ export default function usePatients() {
   const { isPending, isError, data } = useQuery({ 
     queryKey: ["patients"],
     queryFn: getPatients,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
   });
 
   function createPatient(newItem: Patient) {
