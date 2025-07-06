@@ -67,7 +67,12 @@ export default function PatientCard({ id, name, avatar, website, description }: 
           <span className="text-sm">Edit</span>
         </button>
         {hasOverflow && (
-          <button className="cursor-pointer" onClick={() => setExpanded((value) => !value)} type="button">
+          <button
+            className="cursor-pointer"
+            aria-label="Toggle between expanded/collapsed state of the card"
+            onClick={() => setExpanded((value) => !value)}
+            type="button"
+          >
             {expanded ? <ArrowsPointingInIcon className="size-4.5" /> : <ArrowsPointingOutIcon className="size-4.5" />}
           </button>
         )}

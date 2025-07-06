@@ -20,8 +20,16 @@ export default function NavigationItem({ active = false, label, href }: Props) {
           : "bg-transparent font-normal text-gray-800 hover:bg-gray-200"
       } transition-all`}
     >
-      {/* Using pointer-events-none to disable links since we don't have routing implemented */}
-      <a href={href} className="pointer-events-none flex h-11 w-full items-center gap-2 px-8 py-3">
+      {/* 
+        Using pointer-events-none to disable links since we don't have routing implemented 
+        Using tabIndex={-1} on all routes that are not implemented to prevent keyboard navigation
+        on those elements.
+      */}
+      <a
+        href={href}
+        tabIndex={href === "/" ? 0 : -1}
+        className="pointer-events-none flex h-11 w-full items-center gap-2 px-8 py-3"
+      >
         <NavigationItemIcon route={href as RoutePath} />
         <span className="ml-2 text-base">{label}</span>
       </a>

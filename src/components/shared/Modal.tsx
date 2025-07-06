@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import ReactDOM from "react-dom";
 
 interface Props {
@@ -7,6 +8,14 @@ interface Props {
 }
 
 export function Modal({ onClose, children }: Props) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (containerRef.current) {
+      containerRef.current.focus();
+    }
+  }, []);
+
   return ReactDOM.createPortal(
     <motion.div
       key="modal"
@@ -18,6 +27,10 @@ export function Modal({ onClose, children }: Props) {
       onClick={onClose}
     >
       <div
+        role="dialog"
+        aria-modal
+        ref={containerRef}
+        tabIndex={-1}
         className="mx-6 w-full max-w-[28rem] rounded-lg bg-white p-4 shadow-lg sm:mx-0"
         onClick={(e) => e.stopPropagation()}
       >
