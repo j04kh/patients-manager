@@ -6,8 +6,8 @@ interface Props {
   type: MessageType;
 }
 
-const EMPTY_STATE_IMAGE = "./src/assets/images/empty-users.svg";
-const ERROR_STATE_IMAGE = "./src/assets/images/error.svg";
+const EMPTY_STATE_IMAGE = "/images/empty-users.svg";
+const ERROR_STATE_IMAGE = "/images/error.svg";
 
 export default function ErrorState({ title, description, type = "empty" }: Props) {
   const ImageMap: Record<MessageType, string> = {

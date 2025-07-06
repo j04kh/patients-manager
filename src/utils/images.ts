@@ -1,7 +1,7 @@
 /**
  * Path to fallback avatar image.
  */
-export const FALLBACK_IMG_PATH = "./src/assets/images/default-avatar.png";
+export const FALLBACK_IMG_PATH = "/images/default-avatar.png";
 
 /**
  * Replaces a broken image source with a fallback image.

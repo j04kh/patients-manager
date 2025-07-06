@@ -6,10 +6,10 @@ export default function Header() {
       <button type="button" aria-label="Open menu" className="flex-shrink-0 cursor-pointer lg:hidden">
         <Bars3Icon className="size-8 stroke-2" />
       </button>
-      <img src="./pm-logo.png" alt="Patients Manager logo" className="h-2/3 lg:hidden" />
+      <img src="/pm-logo.png" alt="Patients Manager logo" className="h-2/3 lg:hidden" />
       <div className="flex items-center gap-x-3">
         <span className="hidden font-medium sm:flex">John Doe</span>
-        <img src="./src/assets/images/profile.avif" alt="Profile picture" className="size-8 rounded-full lg:size-9" />
+        <img src="/images/profile.avif" alt="Profile picture" className="size-8 rounded-full lg:size-9" />
       </div>
     </header>
   );
