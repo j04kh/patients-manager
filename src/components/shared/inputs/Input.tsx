@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import TextInput from "./TextInput";
-import TextAreaInput from "./TextareaInput";
+import TextAreaInput from "./TextAreaInput";
 
 type InputTypes = "text" | "textarea";
 
