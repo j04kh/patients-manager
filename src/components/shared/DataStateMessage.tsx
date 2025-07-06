@@ -9,7 +9,17 @@ interface Props {
 const EMPTY_STATE_IMAGE = "/images/empty-users.svg";
 const ERROR_STATE_IMAGE = "/images/error.svg";
 
-export default function ErrorState({ title, description, type = "empty" }: Props) {
+/**
+ *  Renders a reusable error or empty state UI with an illustration, title, and description.
+ *
+ * @example
+ * <DataStateMessage
+ *   title="No results found"
+ *   description="Try adjusting your filters or search term."
+ *   type="empty"
+ * />
+ */
+export default function DataStateMessage({ title, description, type = "empty" }: Props) {
   const ImageMap: Record<MessageType, string> = {
     empty: EMPTY_STATE_IMAGE,
     error: ERROR_STATE_IMAGE,

@@ -7,6 +7,15 @@ interface Props {
   children: React.ReactNode;
 }
 
+/**
+ * Modal component that renders a given component inside a centered overlay using React Portal.
+ *
+ * This modal is focusable and traps clicks to prevent accidental closing when interacting with the modal content.
+ *
+ * @example
+ * // Inside a ModalProvider
+ * openModal(<Component />);
+ */
 export function Modal({ onClose, children }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
