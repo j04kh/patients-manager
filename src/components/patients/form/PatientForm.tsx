@@ -4,8 +4,10 @@ import Input from "../../shared/inputs/Input";
 import type { Patient } from "../types";
 import Button from "../../shared/Button";
 import { INITIAL_VALUES, validateWebsite } from "./utils";
+import usePatients from "../../../hooks/usePatients";
+import { useModal } from "../../../contexts/ModalContext";
 
-type PatientFormValues = Partial<Patient>;
+type PatientFormValues = Omit<Patient, "createdAt">;
 
 interface Props {
   values?: PatientFormValues;
@@ -16,12 +18,23 @@ export function PatientForm({ values }: Props) {
     defaultValues: values ?? INITIAL_VALUES,
   });
 
-  const onSubmit: SubmitHandler<PatientFormValues> = () => {
-    // TODO: Add actions
-    console.log("submited!");
+  const onSubmit: SubmitHandler<PatientFormValues> = (data: PatientFormValues) => {
+    // Note: Using createdAt instead of updatedAt to match API patients object format
+    const patientData = { ...data, createdAt: new Date().toISOString() };
+
+    if (isEdit) {
+      updatePatient(patientData);
+    } else {
+      createPatient(patientData);
+    }
+    closeModal();
   };
 
-  const isEdit = !!values;
+  const { createPatient, updatePatient } = usePatients();
+
+  const { closeModal } = useModal();
+
+  const isEdit = !!values?.id;
 
   return (
     <FormProvider {...methods}>
@@ -47,7 +60,7 @@ export function PatientForm({ values }: Props) {
         />
         <div className="flex flex-col gap-y-2 pt-4">
           <Button label={`${isEdit ? "Update" : "Create"}`} variant="primary" />
-          <Button label="Cancel" variant="secondary" onClick={() => {}} type="button" />
+          <Button label="Cancel" variant="secondary" onClick={() => closeModal()} type="button" />
         </div>
       </form>
     </FormProvider>

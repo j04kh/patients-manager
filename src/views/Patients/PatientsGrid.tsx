@@ -28,7 +28,7 @@ export default function PatientsGrid({ patients }: Props) {
       className="grid h-full w-full grid-cols-[repeat(auto-fill,minmax(250px,1fr))] content-start gap-3 overflow-y-auto pr-3 pb-3"
     >
       {patients.map(({ id, name, description, avatar, website }) => (
-        <PatientCard key={id} name={name} avatar={avatar} website={website} description={description} />
+        <PatientCard key={id} id={id} name={name} avatar={avatar} website={website} description={description} />
       ))}
     </section>
   );
