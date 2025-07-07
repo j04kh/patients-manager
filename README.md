@@ -1,4 +1,4 @@
-# Patients Manager App 💻
+# Patients Manager App 
 
 This project provides a user interface to browse patient data. It includes mocked routes and forms to update records in the cache without persisting changes to an external API.
 
@@ -7,13 +7,13 @@ This project provides a user interface to browse patient data. It includes mocke
 This project was generated using Vite and React.js with TypeScript. Data fetching is handled with TanStack Query. Forms utilize React Hook Form for client-side validation.
 The UI is built with TailwindCSS v4, combined with Heroicons, React Hot Toast, and Framer Motion for animations.
 
-## Tools used 🛠️
+## Tools used 
 
 - ESLint for linting and detecting issues.
 - Prettier for consistent code formatting.
 - Node Version Manager (nvm) for managing Node.js versions.
 
-## How to run the project locally 🚀
+## How to run the project locally 
 
 - Clone this project.
 - Set the environment variables as described in `.env.example`
