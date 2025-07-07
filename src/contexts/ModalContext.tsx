@@ -11,6 +11,7 @@ interface ModalContextType {
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
 // Export context as a hook
+// eslint-disable-next-line react-refresh/only-export-components
 export const useModal = () => {
   const context = useContext(ModalContext);
   if (!context) throw new Error("useModal must be used within a ModalProvider");

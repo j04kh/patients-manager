@@ -1,9 +1,7 @@
 import ROUTES from "../../../constants";
 import NavigationItem from "./NavigationItem";
 
-interface Props {}
-
-export default function Sidebar({}: Props) {
+export default function Sidebar() {
   return (
     <aside className="hidden h-full w-[14rem] border-r border-gray-300 bg-white lg:flex lg:h-screen lg:flex-shrink-0 lg:flex-col">
       <div className="flex h-16 flex-shrink-0 items-center justify-center pr-4">
