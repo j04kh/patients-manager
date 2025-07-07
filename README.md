@@ -1,69 +1,25 @@
-# React + TypeScript + Vite
+# Patients Manager App 💻
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project provides a user interface to browse patient data. It includes mocked routes and forms to update records in the cache without persisting changes to an external API.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This project was generated using Vite and React.js with TypeScript. Data fetching is handled with TanStack Query. Forms utilize React Hook Form for client-side validation.
+The UI is built with TailwindCSS v4, combined with Heroicons, React Hot Toast, and Framer Motion for animations.
 
-## Expanding the ESLint configuration
+## Tools used 🛠️
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- ESLint for linting and detecting issues.
+- Prettier for consistent code formatting.
+- Node Version Manager (nvm) for managing Node.js versions.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## How to run the project locally 🚀
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- Clone this project.
+- Set the environment variables as described in `.env.example`
+- Run `nvm use` to select the correct Node.js version.
+- Run `npm install` to install dependencies.
+- Run `npm run dev` to start the development server on localhost.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+> **For a production build:**  
+> Run `npm run build` to create an optimized build, then run `npm run preview` to serve it locally.
